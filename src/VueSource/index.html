@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!--  Object.definedProperty 通过改变Obj的值来更新html的内容  -->
+  <div class="show"></div>
+  <button id="btn">ADD</button>
+  <script>
+      const obj = {}
+      let initialValue = 0
+      Object.defineProperty(obj, 'value', {
+        get() {
+          return initialValue
+        },
+        set(val) {
+          if (initialValue !== val) {
+            initialValue = val
+            update(val)
+          }
+        }
+      })
+      update(initialValue)
+      function update(val) {
+        document.querySelector('.show').innerHTML = val
+      }
+      document.querySelector('#btn').addEventListener('click', add)
+      function add () {
+        obj.value++ 
+      }
+    </script>
+</body>
+</html>

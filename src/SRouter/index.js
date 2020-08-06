@@ -48,7 +48,7 @@ class VueRouter {
 
   matchedRouter(path) {
     const currentRoute = this.routeMap[path];
-    this.matched.push(currentRoute);
+    this.matched.unshift(currentRoute);
     if (currentRoute.parent) {
       this.matchedRouter(currentRoute.parent.path);
     }
@@ -79,15 +79,12 @@ VueRouter.install = function(Vue) {
   });
 
   Vue.component("router-view", {
-    data() {
-      return {
-        routerView: true
-      };
-    },
     render(h) {
+      this.routerView = true
+      this.tmp = 0
       // vue-router 是 给 $vnode加上 routerView 作为router-view的标识
       // 放到data里面也是可以的
-      // Q: 为甚这里要绑定到$vnode上
+      // Q: 为甚这里要绑定到$vnode上,才有用 直接this.routerView 好像不行
       // Q: 还有除了深度检查的方式 来render 对应的comp吗？
       // T: 区分router-view 用path key 可行否》？
       let depth = 0;
@@ -98,10 +95,12 @@ VueRouter.install = function(Vue) {
         }
         parent = parent.$parent;
       }
-
+      this.tmp = depth
       const { matched } = this.$router;
-      const currentRoute = matched[matched.length - 1 - depth];
+      const currentRoute = matched[this.tmp];
+      console.log(matched, 'render router-view')
       const comp = currentRoute ? currentRoute.component : null;
+      // console.log(comp)
       return h(comp);
     }
   });
