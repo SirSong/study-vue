@@ -8,10 +8,11 @@
 </head>
 <body>
   <!--  Object.definedProperty 通过改变Obj的值来更新html的内容  -->
-  <div class="show"></div>
+  <div class="view"></div>
   <button id="btn">ADD</button>
   <script>
       const obj = {}
+      const view = document.querySelector('.view')
       let initialValue = 0
       Object.defineProperty(obj, 'value', {
         get() {
@@ -20,18 +21,23 @@
         set(val) {
           if (initialValue !== val) {
             initialValue = val
-            update(val)
+            updateView()
           }
         }
       })
-      update(initialValue)
-      function update(val) {
-        document.querySelector('.show').innerHTML = val
+      function updateView() {
+        view.innerHTML = obj.value
       }
-      document.querySelector('#btn').addEventListener('click', add)
+
       function add () {
-        obj.value++ 
+        obj.value++
       }
+
+      // init
+      updateView()
+
+      document.querySelector('#btn').addEventListener('click', add)
+
     </script>
 </body>
 </html>
