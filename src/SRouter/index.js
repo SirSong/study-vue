@@ -89,6 +89,7 @@ VueRouter.install = function(Vue) {
       // 放到data里面也是可以的
       // Q: 为甚这里要绑定到$vnode上
       // Q: 还有除了深度检查的方式 来render 对应的comp吗？
+      // T: 区分router-view 用path key 可行否》？
       let depth = 0;
       let parent = this.$parent;
       while (parent) {

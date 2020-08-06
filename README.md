@@ -1,24 +1,14 @@
-# vue
+study
 
-## Project setup
-```
-npm install
-```
+kkb上课为基础
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+练习、拓展、提升、完善 学的内容
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- [ ] vue-router
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+######### 组件
+- [ ] 组件一些用法
+- [ ] 递归组件
+- [ ] ElementUI
+  - [ ] Form 表单
+  - [ ] tree
